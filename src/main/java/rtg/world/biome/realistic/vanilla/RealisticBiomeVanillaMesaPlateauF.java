@@ -10,27 +10,29 @@ import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
-import rtg.world.biome.deco.*;
+import rtg.world.biome.deco.DecoCactus;
+import rtg.world.biome.deco.DecoDeadBush;
+import rtg.world.biome.deco.DecoReed;
+import rtg.world.biome.deco.DecoShrub;
+import rtg.world.biome.deco.DecoTree;
 import rtg.world.biome.deco.DecoTree.TreeCondition;
 import rtg.world.biome.deco.DecoTree.TreeType;
 import rtg.world.gen.feature.tree.vanilla.WorldGenTreesRTG;
 import rtg.world.gen.surface.vanilla.SurfaceVanillaMesaPlateauF;
 import rtg.world.gen.terrain.vanilla.TerrainVanillaMesaPlateauF;
 
-public class RealisticBiomeVanillaMesaPlateauF extends RealisticBiomeVanillaBase
-{	
-    
+public class RealisticBiomeVanillaMesaPlateauF extends RealisticBiomeVanillaBase {
+
     public static Block topBlock = BiomeGenBase.mesaPlateau_F.topBlock;
-	public static Block fillerBlock = BiomeGenBase.mesaPlateau_F.fillerBlock;
-	
-	public RealisticBiomeVanillaMesaPlateauF(BiomeConfig config)
-	{
-        super(config,
-    			BiomeGenBase.mesaPlateau_F,
-    			BiomeGenBase.river,
-                new TerrainVanillaMesaPlateauF(true, 35f, 160f, 60f, 40f, 69f),
-                new SurfaceVanillaMesaPlateauF(config, Blocks.sand, (byte)1, Blocks.sand, (byte)1, 0)
-        );
+    public static Block fillerBlock = BiomeGenBase.mesaPlateau_F.fillerBlock;
+
+    public RealisticBiomeVanillaMesaPlateauF(BiomeConfig config) {
+        super(
+            config,
+            BiomeGenBase.mesaPlateau_F,
+            BiomeGenBase.river,
+            new TerrainVanillaMesaPlateauF(true, 35f, 160f, 60f, 40f, 69f),
+            new SurfaceVanillaMesaPlateauF(config, Blocks.sand, (byte) 1, Blocks.sand, (byte) 1, 0));
         this.noLakes = true;
 
         DecoShrub decoShrub = new DecoShrub();
@@ -40,7 +42,7 @@ public class RealisticBiomeVanillaMesaPlateauF extends RealisticBiomeVanillaBase
         DecoCactus decoCactus = new DecoCactus();
         decoCactus.strengthFactor = 25f;
         decoCactus.soilBlock = Blocks.sand;
-        decoCactus.soilMeta = (byte)1;
+        decoCactus.soilMeta = (byte) 1;
         decoCactus.sandOnly = false;
         decoCactus.maxRiver = 0.8f;
         addDeco(decoCactus);
@@ -67,7 +69,8 @@ public class RealisticBiomeVanillaMesaPlateauF extends RealisticBiomeVanillaBase
     }
 
     @Override
-    public void rReplace(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base) {
+    public void rReplace(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world,
+        Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base) {
         this.rReplaceRiverSurface(blocks, metadata, i, j, x, y, depth, world, rand, simplex, cell, noise, river, base);
     }
 }

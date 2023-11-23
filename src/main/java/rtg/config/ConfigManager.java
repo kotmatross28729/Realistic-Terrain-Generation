@@ -27,9 +27,8 @@ import rtg.config.tofucraft.ConfigTOFU;
 import rtg.config.vampirism.ConfigVAMP;
 import rtg.config.vanilla.ConfigVanilla;
 
-public class ConfigManager
-{
-    
+public class ConfigManager {
+
     public static File rtgConfigFile;
     public static File vanillaConfigFile;
     public static File bopConfigFile;
@@ -56,13 +55,13 @@ public class ConfigManager
     public static File sfConfigFile;
 
     private ConfigRTG configRTG = new ConfigRTG();
+
     public ConfigRTG rtg() {
         return configRTG;
     }
-    
-    public static void init(String configpath)
-    {
-    
+
+    public static void init(String configpath) {
+
         rtgConfigFile = new File(configpath + "rtg.cfg");
         vanillaConfigFile = new File(configpath + "biomes/vanilla.cfg");
         bopConfigFile = new File(configpath + "biomes/biomesoplenty.cfg");
@@ -87,11 +86,11 @@ public class ConfigManager
         itdConfigFile = new File(configpath + "biomes/inthedarkness.cfg");
         fcConfigFile = new File(configpath + "biomes/flowercraft.cfg");
         sfConfigFile = new File(configpath + "biomes/sugiforest.cfg");
-        
+
         ConfigRTG.init(rtgConfigFile);
-        
+
         ConfigVanilla.init(vanillaConfigFile);
-        
+
         ConfigBOP.init(bopConfigFile);
         ConfigEBXL.init(ebxlConfigFile);
         ConfigEB.init(ebConfigFile);

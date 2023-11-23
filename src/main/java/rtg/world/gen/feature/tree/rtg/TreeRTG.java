@@ -15,33 +15,32 @@ import rtg.util.WorldUtil;
 
 /**
  * The base class for all RTG trees.
- * 
+ *
  * @see <a href="http://imgur.com/a/uoJsU">RTG Tree Gallery</a>
  * @author WhichOnesPink
  *
  */
-public class TreeRTG extends WorldGenAbstractTree
-{
+public class TreeRTG extends WorldGenAbstractTree {
 
-	public Block logBlock;
-	public byte logMeta;
-	public Block leavesBlock;
-	public byte leavesMeta;
-	public int trunkSize;
-	public int crownSize;
-	public boolean noLeaves;
-	
-	public Block saplingBlock;
-	public byte saplingMeta;
-	
-	public int generateFlag;
-	
-	public int minTrunkSize;
-	public int maxTrunkSize;
-	public int minCrownSize;
-	public int maxCrownSize;
-	
-	public ArrayList<Block> validGroundBlocks;
+    public Block logBlock;
+    public byte logMeta;
+    public Block leavesBlock;
+    public byte leavesMeta;
+    public int trunkSize;
+    public int crownSize;
+    public boolean noLeaves;
+
+    public Block saplingBlock;
+    public byte saplingMeta;
+
+    public int generateFlag;
+
+    public int minTrunkSize;
+    public int maxTrunkSize;
+    public int minCrownSize;
+    public int maxCrownSize;
+
+    public ArrayList<Block> validGroundBlocks;
 
     protected int trunkLogMeta;
     private boolean allowBarkCoveredLogs;
@@ -50,105 +49,94 @@ public class TreeRTG extends WorldGenAbstractTree
         super(notify);
     }
 
-	public TreeRTG() {
+    public TreeRTG() {
 
-	    this(false);
+        this(false);
 
-		this.logBlock = Blocks.log;
-		this.logMeta = (byte)0;
-		this.leavesBlock = Blocks.leaves;
-		this.leavesMeta = (byte)0;
-		this.trunkSize = 2;
-		this.crownSize = 4;
-		this.noLeaves = false;
-		
-		this.saplingBlock = Blocks.sapling;
-		this.saplingMeta = (byte)0;
-		
-		this.generateFlag = 2;
-		
-		// These need to default to zero as they're only used when generating trees from saplings.
-		this.minTrunkSize = 0;
-		this.maxTrunkSize = 0;
-		this.minCrownSize = 0;
-		this.maxCrownSize = 0;
-		
-		// Each tree sub-class is responsible for using (or not using) this list as part of its generation logic.
-		this.validGroundBlocks = new ArrayList<Block>(Arrays.asList(Blocks.grass, Blocks.dirt, Blocks.sand));
+        this.logBlock = Blocks.log;
+        this.logMeta = (byte) 0;
+        this.leavesBlock = Blocks.leaves;
+        this.leavesMeta = (byte) 0;
+        this.trunkSize = 2;
+        this.crownSize = 4;
+        this.noLeaves = false;
+
+        this.saplingBlock = Blocks.sapling;
+        this.saplingMeta = (byte) 0;
+
+        this.generateFlag = 2;
+
+        // These need to default to zero as they're only used when generating trees from saplings.
+        this.minTrunkSize = 0;
+        this.maxTrunkSize = 0;
+        this.minCrownSize = 0;
+        this.maxCrownSize = 0;
+
+        // Each tree sub-class is responsible for using (or not using) this list as part of its generation logic.
+        this.validGroundBlocks = new ArrayList<Block>(Arrays.asList(Blocks.grass, Blocks.dirt, Blocks.sand));
 
         this.allowBarkCoveredLogs = ConfigRTG.allowBarkCoveredLogs;
         this.trunkLogMeta = this.logMeta;
-	}
+    }
 
-	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z)
-	{
-		return false;
-	}
-	
-    public void buildTrunk(World world, Random rand, int x, int y, int z)
-    {
+    @Override
+    public boolean generate(World world, Random rand, int x, int y, int z) {
+        return false;
+    }
+
+    public void buildTrunk(World world, Random rand, int x, int y, int z) {
 
     }
-    
-    public void buildBranch(World world, Random rand, int x, int y, int z, int dX, int dZ, int logLength, int leaveSize)
-    {
+
+    public void buildBranch(World world, Random rand, int x, int y, int z, int dX, int dZ, int logLength,
+        int leaveSize) {
 
     }
-	
-    public void buildLeaves(World world, int x, int y, int z)
-    {
-    	if (this.noLeaves) {
-    		return;
-    	}
+
+    public void buildLeaves(World world, int x, int y, int z) {
+        if (this.noLeaves) {
+            return;
+        }
     }
-    
-    public void buildLeaves(World world, Random rand, int x, int y, int z, int size)
-    {
+
+    public void buildLeaves(World world, Random rand, int x, int y, int z, int size) {
 
     }
-    
-	public TreeRTG setLogBlock(Block logBlock)
-	{
-		this.logBlock = logBlock;
-		return this;
-	}
-	
-	public TreeRTG setLogMeta(byte logMeta)
-	{
-		this.logMeta = logMeta;
-		return this;
-	}
-	
-	public TreeRTG setLeavesBlock(Block leavesBlock)
-	{
-		this.leavesBlock = leavesBlock;
-		return this;
-	}
-	
-	public TreeRTG setLeavesMeta(byte leavesMeta)
-	{
-		this.leavesMeta = leavesMeta;
-		return this;
-	}
-	
-	public TreeRTG setTrunkSize(int trunkSize)
-	{
-		this.trunkSize = trunkSize;
-		return this;
-	}
-	
-	public TreeRTG setCrownSize(int crownSize)
-	{
-		this.crownSize = crownSize;
-		return this;
-	}
-	
-	public TreeRTG setNoLeaves(boolean noLeaves)
-	{
-		this.noLeaves = noLeaves;
-		return this;
-	}
+
+    public TreeRTG setLogBlock(Block logBlock) {
+        this.logBlock = logBlock;
+        return this;
+    }
+
+    public TreeRTG setLogMeta(byte logMeta) {
+        this.logMeta = logMeta;
+        return this;
+    }
+
+    public TreeRTG setLeavesBlock(Block leavesBlock) {
+        this.leavesBlock = leavesBlock;
+        return this;
+    }
+
+    public TreeRTG setLeavesMeta(byte leavesMeta) {
+        this.leavesMeta = leavesMeta;
+        return this;
+    }
+
+    public TreeRTG setTrunkSize(int trunkSize) {
+        this.trunkSize = trunkSize;
+        return this;
+    }
+
+    public TreeRTG setCrownSize(int crownSize) {
+        this.crownSize = crownSize;
+        return this;
+    }
+
+    public TreeRTG setNoLeaves(boolean noLeaves) {
+        this.noLeaves = noLeaves;
+        return this;
+    }
 
     protected boolean isGroundValid(World world, int x, int y, int z) {
 
@@ -194,7 +182,8 @@ public class TreeRTG extends WorldGenAbstractTree
         }
     }
 
-    protected void placeLeavesBlock(World world, int x, int y, int z, Block leavesBlock, byte leavesMeta, int generateFlag) {
+    protected void placeLeavesBlock(World world, int x, int y, int z, Block leavesBlock, byte leavesMeta,
+        int generateFlag) {
 
         if (world.isAirBlock(x, y, z)) {
             world.setBlock(x, y, z, leavesBlock, leavesMeta, generateFlag);
@@ -206,10 +195,7 @@ public class TreeRTG extends WorldGenAbstractTree
 
         Block b = world.getBlock(x, y, z);
 
-        return b.isAir(world, x, y, z)
-            || b.isLeaves(world, x, y, z)
-            || b.isWood(world, x, y, z)
-            || canGrowInto(b);
+        return b.isAir(world, x, y, z) || b.isLeaves(world, x, y, z) || b.isWood(world, x, y, z) || canGrowInto(b);
     }
 
     @Override
@@ -222,8 +208,7 @@ public class TreeRTG extends WorldGenAbstractTree
 
         Material material = blockType.getMaterial();
 
-        return material == Material.air
-            || material == Material.leaves
+        return material == Material.air || material == Material.leaves
             || material == Material.plants
             || material == Material.grass
             || material == Material.ground
@@ -239,7 +224,7 @@ public class TreeRTG extends WorldGenAbstractTree
 
         if (!worldUtil.isSurroundedByBlock(Blocks.air, treeHeight, WorldUtil.SurroundCheckType.UP, rand, x, y, z)) {
 
-            //Logger.debug("Unable to grow RTG tree with %d height. Something in the way.", treeHeight);
+            // Logger.debug("Unable to grow RTG tree with %d height. Something in the way.", treeHeight);
 
             return false;
         }
@@ -258,6 +243,6 @@ public class TreeRTG extends WorldGenAbstractTree
 
     public int getTrunkLogMeta(byte defaultMeta) {
 
-        return getTrunkLogMeta((int)defaultMeta);
+        return getTrunkLogMeta((int) defaultMeta);
     }
 }

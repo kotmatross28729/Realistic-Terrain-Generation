@@ -3,7 +3,6 @@ package rtg;
 import java.util.ArrayList;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
-
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.Mod;
@@ -12,14 +11,12 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
-
 import rtg.api.event.BiomeConfigEvent;
 import rtg.config.BiomeConfigManager;
 import rtg.config.ConfigManager;
 import rtg.config.rtg.ConfigRTG;
 import rtg.event.EventManagerRTG;
 import rtg.event.WorldTypeMessageEventHandler;
-import rtg.reference.ModInfo;
 import rtg.util.RealisticBiomePresenceTester;
 import rtg.world.WorldTypeRTG;
 import rtg.world.biome.realistic.abyssalcraft.RealisticBiomeACBase;
@@ -49,12 +46,39 @@ import rtg.world.biome.realistic.vanilla.RealisticBiomeVanillaBase;
 import rtg.world.gen.structure.MapGenScatteredFeatureRTG;
 import rtg.world.gen.structure.MapGenVillageRTG;
 
-
-//@Mod(modid = "RTG", name = "Realistic Terrain Generaton", version = "0.8.0d", dependencies = "required-after:Forge@[10.13.4.1448,)", acceptableRemoteVersions = "*")
-@Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = "required-after:Forge@[" + ModInfo.FORGE_DEP + ",)" + ModInfo.MOD_DEPS, acceptableRemoteVersions = "*")
+@Mod(
+    modid = "RTG",
+    name = "Realistic Terrain Generation",
+    version = Tags.VERSION,
+    dependencies = "after:abyssalcraft@[1.9.1.2,);" + "after:arsmagica2@[1.4.0.008,);"
+        + "after:ATG@[0.10.0,);"
+        + "after:BiomesOPlenty@[2.1.0,);"
+        + "after:BuildCraft|Core@[7.1.7,);"
+        + "after:enhancedbiomes@2.5 for MC 1.7.10;"
+        + "after:enviromine@[1.3.119,);"
+        + "after:ExtrabiomesXL@[3.16.2,);"
+        + "after:flowercraftmod@[1.9,);"
+        + "after:ForgottenNature@[1.6.11,);"
+        + "after:Growthcraft|Bamboo@[1.7.10-2.5.0,);"
+        + "after:Highlands@[2.2.3,);"
+        + "after:hot_water;"
+        + "after:ICMod@[1.5.0,);"
+        + "after:InTheDarkness;"
+        + "after:kegare.sugiforest;"
+        + "after:lom@[1.7.10-3.2.0,);"
+        + "after:Mariculture@[1.7.10-1.2.4.2a-5,);"
+        + "after:mod_ebm;"
+        + "after:mod_IDT;"
+        + "after:Railcraft@[9.7.0.0,);"
+        + "after:RidiculousWorld@[0.1,);"
+        + "after:sushicraft@[14.4,);"
+        + "after:Thaumcraft@[4.2.3.4,);"
+        + "after:TofuCraft@2.1.6-MC1.7.10;"
+        + "after:vampirism@[0.7.8.5,)",
+    acceptableRemoteVersions = "*")
 public class RTG {
 
-    @Instance(ModInfo.MOD_ID)
+    @Instance("RTG")
     public static RTG instance;
     public static String configPath;
     public static WorldTypeRTG worldtype;
@@ -70,8 +94,7 @@ public class RTG {
     }
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         instance = this;
 
         worldtype = new WorldTypeRTG("RTG");
@@ -97,15 +120,14 @@ public class RTG {
     }
 
     /*
-    @EventHandler
-    public void init(FMLInitializationEvent event) {}
-    */
+     * @EventHandler
+     * public void init(FMLInitializationEvent event) {}
+     */
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
+    public void postInit(FMLPostInitializationEvent event) {
         RealisticBiomeVanillaBase.addBiomes();
-        
+
         RealisticBiomeBOPBase.addBiomes();
         RealisticBiomeEBBase.addBiomes();
         RealisticBiomeEBXLBase.addBiomes();
@@ -134,18 +156,15 @@ public class RTG {
     }
 
     /*
-    @EventHandler
-    public void serverAboutToStart(FMLServerAboutToStartEvent event) {}
-    
-    @EventHandler
-    public void serverStarting(FMLServerStartingEvent event) {}
-    
-    @EventHandler
-    public void serverStarted(FMLServerStartedEvent event) {}
-
-    @EventHandler
-    public void serverStopping(FMLServerStoppingEvent event) {}
-    */
+     * @EventHandler
+     * public void serverAboutToStart(FMLServerAboutToStartEvent event) {}
+     * @EventHandler
+     * public void serverStarting(FMLServerStartingEvent event) {}
+     * @EventHandler
+     * public void serverStarted(FMLServerStartedEvent event) {}
+     * @EventHandler
+     * public void serverStopping(FMLServerStoppingEvent event) {}
+     */
 
     public void runOnServerClose(Runnable action) {
         serverCloseActions.add(action);
@@ -156,12 +175,11 @@ public class RTG {
     }
 
     @EventHandler
-    public void serverStopped(FMLServerStoppedEvent event)
-    {
-        for (Runnable action: serverCloseActions) {
+    public void serverStopped(FMLServerStoppedEvent event) {
+        for (Runnable action : serverCloseActions) {
             action.run();
         }
-        for (Runnable action: oneShotServerCloseActions) {
+        for (Runnable action : oneShotServerCloseActions) {
             action.run();
         }
         oneShotServerCloseActions.clear();

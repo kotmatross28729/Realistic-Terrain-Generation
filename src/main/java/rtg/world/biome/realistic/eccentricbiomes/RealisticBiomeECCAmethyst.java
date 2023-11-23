@@ -7,19 +7,18 @@ import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.eccentricbiomes.SurfaceECCAmethyst;
 import rtg.world.gen.terrain.eccentricbiomes.TerrainECCAmethyst;
 
-public class RealisticBiomeECCAmethyst extends RealisticBiomeECCBase
-{
+public class RealisticBiomeECCAmethyst extends RealisticBiomeECCBase {
 
-    public RealisticBiomeECCAmethyst(BiomeGenBase eccBiome, BiomeConfig config)
-    {
-    
-        super(config, 
-            eccBiome, BiomeGenBase.river,
+    public RealisticBiomeECCAmethyst(BiomeGenBase eccBiome, BiomeConfig config) {
+
+        super(
+            config,
+            eccBiome,
+            BiomeGenBase.river,
             new TerrainECCAmethyst(),
-            new SurfaceECCAmethyst(config, eccBiome.topBlock, eccBiome.fillerBlock)
-        );
-		
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
+            new SurfaceECCAmethyst(config, eccBiome.topBlock, eccBiome.fillerBlock));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
     }
 }

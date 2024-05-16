@@ -21,8 +21,6 @@ import net.minecraftforge.common.BiomeDictionary;
 
 import rtg.config.rtg.ConfigRTG;
 import rtg.util.Logger;
-import rtg.util.ModPresenceTester;
-import sgcraft.api.SGCraftAPI;
 
 /**
  * Author: Choonster (https://github.com/Choonster)
@@ -50,8 +48,6 @@ public class MapGenScatteredFeatureRTG extends MapGenScatteredFeature {
     private static List biomelist = Arrays.asList(
         new BiomeGenBase[] { BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.jungle,
             BiomeGenBase.jungleHills, BiomeGenBase.swampland });
-
-    private final static ModPresenceTester sgCraft = new ModPresenceTester("SGCraft");
 
     /** contains possible spawns for scattered features */
     private List scatteredFeatureSpawnList;
@@ -197,12 +193,6 @@ public class MapGenScatteredFeatureRTG extends MapGenScatteredFeature {
                     chunkX * 16,
                     chunkZ * 16);
                 desertTempleComponents.add(desertpyramid);
-
-                if (sgCraft.present()) {
-
-                    SGCraftAPI sgCraftAPI = new SGCraftAPI();
-                    sgCraftAPI.addStargateToDesertTempleComponents(desertpyramid, desertTempleComponents);
-                }
 
                 this.components.addAll(desertTempleComponents);
             } else if (canSpawnJungleTemple(biomegenbase)) {

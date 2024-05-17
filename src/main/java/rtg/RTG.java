@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -95,6 +96,10 @@ public class RTG {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        if (Loader.isModLoaded("RWG")) {
+            throw new RuntimeException("Realistic World Gen is incompatible with RTG");
+        }
+
         instance = this;
 
         worldtype = new WorldTypeRTG("RTG");
@@ -127,7 +132,6 @@ public class RTG {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         RealisticBiomeVanillaBase.addBiomes();
-
         RealisticBiomeBOPBase.addBiomes();
         RealisticBiomeEBBase.addBiomes();
         RealisticBiomeEBXLBase.addBiomes();
